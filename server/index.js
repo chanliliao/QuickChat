@@ -2,7 +2,7 @@ import express from 'express';
 import { Server } from 'socket.io';
 import { createServer } from 'http';
 import router from './router.js';
-import { addUser, removeUser, getUser, getUserInRoom } from './users.js';
+import { addUser, removeUser, getUser, getUsersInRoom } from './users.js';
 import { callbackify } from 'util';
 
 const PORT = process.env.PORT || 5000;
@@ -35,6 +35,11 @@ io.on('connect', (socket) => {
 
     socket.join(user.room);
 
+    io.to(user.room).emit('roomData', {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
+
     callback();
   });
 
@@ -42,12 +47,23 @@ io.on('connect', (socket) => {
     const user = getUser(socket.id);
 
     io.to(user.room).emit('message', { user: user.name, text: message });
+    io.to(user.room).emit('roomData', {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
 
     callback();
   });
 
   socket.on('disconnect', () => {
-    console.log('User had left!');
+    const user = removeUser(socket.id);
+
+    if (user) {
+      io.to(user.room).emit('message', {
+        user: 'admin',
+        text: `${user.name} has left.`,
+      });
+    }
   });
 });
 

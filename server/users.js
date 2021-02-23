@@ -20,11 +20,11 @@ const removeUser = (id) => {
   const index = users.findIndex((user) => user.id === id);
 
   if (index !== -1) {
-    return uers.splice(index, 1)[0];
+    return users.splice(index, 1)[0];
   }
 };
 const getUser = (id) => users.find((user) => user.id === id);
 
-const getUserInRoom = (room) => users.find((user) => user.room === room);
+const getUsersInRoom = (room) => users.find((user) => user.room === room);
 
-export { addUser, removeUser, getUser, getUserInRoom };
+export { addUser, removeUser, getUser, getUsersInRoom };
