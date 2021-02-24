@@ -4,6 +4,7 @@ import { createServer } from 'http';
 import router from './router.js';
 import { addUser, removeUser, getUser, getUsersInRoom } from './users.js';
 import { callbackify } from 'util';
+import cors from 'cors';
 
 const PORT = process.env.PORT || 5000;
 
@@ -68,5 +69,7 @@ io.on('connect', (socket) => {
 });
 
 app.use('/', router);
+
+app.use(cors());
 
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
