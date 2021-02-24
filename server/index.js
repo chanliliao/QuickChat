@@ -64,6 +64,10 @@ io.on('connect', (socket) => {
         user: 'admin',
         text: `${user.name} has left.`,
       });
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
     }
   });
 });

@@ -19,8 +19,7 @@ const TextContainer = ({ users }) => {
           </span>
         </h2>
       </div>
-      {console.log(users)}
-      {/* {users ? (
+      {users ? (
         <div>
           <h1>People in chat:</h1>
           <div className='activeContainer'>
@@ -34,7 +33,7 @@ const TextContainer = ({ users }) => {
             </h2>
           </div>
         </div>
-      ) : null} */}
+      ) : null}
     </div>
   );
 };
