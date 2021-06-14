@@ -16,6 +16,7 @@
   width: 35%;
 }
 
+/* Responsive media */
 @media (min-width: 320px) and (max-width: 480px) {
   .outerContainer {
     height: 100%;

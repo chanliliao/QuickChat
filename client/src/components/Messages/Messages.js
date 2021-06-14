@@ -1,9 +1,11 @@
+// imports
 import React, { useEffect, useRef } from 'react';
 import Message from './Message/Message';
-
+// css import
 import './Messages.css';
 
 const Messages = ({ messages, name }) => {
+  // Scroll down function
   const msgEndRef = useRef(null);
 
   const scrollToBottom = () => {

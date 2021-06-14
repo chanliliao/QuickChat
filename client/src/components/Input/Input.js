@@ -1,5 +1,6 @@
+// imports
 import React from 'react';
-
+// css import
 import './Input.css';
 
 const Input = ({ message, setMessage, sendMessage }) => {
