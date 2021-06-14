@@ -6,8 +6,10 @@ import { addUser, removeUser, getUser, getUsersInRoom } from './users.js';
 import { callbackify } from 'util';
 import cors from 'cors';
 
+// set port
 const PORT = process.env.PORT || 5000;
 
+// initialized the server
 const app = express();
 
 // create a HTTP server object
@@ -20,6 +22,7 @@ const io = new Server(server, {
   },
 });
 
+// start new connection
 io.on('connect', (socket) => {
   // create and join room
   socket.on('join', ({ name, room }, callback) => {
